@@ -7,7 +7,7 @@ function UserBlogs() {
   const id = localStorage.getItem("userId");
   const sendRequest = async () => {
     const res = await axios
-      .get(`https://blog-app-lake-beta.vercel.app/api/blog/user/${id}`)
+      .get(`https://blog-app-lake-beta.vercel.app/user/${id}`)
       .catch((err) => console.log(err));
     const data = await res.data;
     return data;
