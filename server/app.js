@@ -9,11 +9,7 @@ dotenv.config();
 const app = express();
 
 
-app.use(cors({
-  origin: 'https://my-blog-app-rust.vercel.app/',
-  methods: ['GET', 'POST'],
-
-}));
+app.use(cors());
 
 
 app.use(express.json());
