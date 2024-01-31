@@ -7,11 +7,13 @@ import cors from "cors";
 
 dotenv.config();
 const app = express();
+
+app.use(cors());
+
+
 app.use(cors({
-  origin: 'https://my-blog-app-rust.vercel.app/', // Replace with your allowed origin
-  methods: ['GET', 'POST'], // Specify the allowed HTTP methods
-  credentials: true,
-}));
+  origin: 'https://my-blog-app-rust.vercel.app',
+  methods: ['GET', 'POST'], /
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

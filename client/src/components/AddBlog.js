@@ -23,7 +23,6 @@ const AddBlog = () => {
     const res = await axios
       // .post("http://localhost:8000/api/blog/add", {
       .post("https://blog-app-lake-beta.vercel.app/api/blog/add", {
-        credentials: 'include',
         title: inputs.title,
         content: inputs.content,
         image: inputs.image,

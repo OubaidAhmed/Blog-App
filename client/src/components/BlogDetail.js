@@ -48,7 +48,6 @@ function BlogDetail() {
   const sendRequest = async () => {
     const res = await axios
       .put(`https://blog-app-lake-beta.vercel.app/api/blog/update/${id}`, {
-        credentials: 'include',
         title: inputs.title,
         content: inputs.content,
         image: inputs.image,
