@@ -4,14 +4,26 @@ import Blog from "./Blog";
 
 function Blogs() {
   const [blogs, setBlogs] = useState();
-  const sendRequest = async () => {
-    const res = await axios
-      .get("https://blog-app-lake-beta.vercel.app/api/blog")
-      .catch((err) => console.log(err));
+  // const sendRequest = async () => {
+  //   const res = await axios
+  //     .get("https://blog-app-lake-beta.vercel.app/api/blog")
+  //     .catch((err) => console.log(err));
 
-    const data = await res.data;
-    return data;
+  //   const data = await res.data;
+  //   return data;
+  // };
+
+  const sendRequest = async () => {
+    try {
+      const res = await axios.get("https://blog-app-lake-beta.vercel.app/api/blog");
+      const data = res.data;
+      return data;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      throw error; // Rethrow the error to be caught by the component
+    }
   };
+
   useEffect(() => {
     sendRequest().then((data) => setBlogs(data.blogs));
   }, []);
