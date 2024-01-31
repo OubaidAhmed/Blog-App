@@ -20,7 +20,7 @@ function BlogDetail() {
 
   const fetchDetails = async () => {
     const res = await axios
-      .get(`http://localhost:8000/api/blog/${id}`)
+      .get(`https://blog-app-lake-beta.vercel.app/api/blog/${id}`)
       .catch((err) => console.log(err));
 
     const data = res.data;
@@ -30,7 +30,7 @@ function BlogDetail() {
   const handleSubmit = (event) => {
     event.preventDefault();
     sendRequest()
-      .then((data) => console.log(data))  
+      .then((data) => console.log(data))
       .then(() => navigate("/myBlogs"));
   };
 
@@ -47,7 +47,8 @@ function BlogDetail() {
 
   const sendRequest = async () => {
     const res = await axios
-      .put(`http://localhost:8000/api/blog/update/${id}`, {
+      .put(`https://blog-app-lake-beta.vercel.app/api/blog/update/${id}`, {
+        credentials: 'include',
         title: inputs.title,
         content: inputs.content,
         image: inputs.image,

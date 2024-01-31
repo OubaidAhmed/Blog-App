@@ -50,7 +50,7 @@ function Header() {
           variant="h4"
           style={{ textDecoration: "none" }}
         >
-          My Blog
+          M Blog
         </Typography>
         {isLoggedIn && (
           <Box display="flex" marginLeft={"auto"}>
