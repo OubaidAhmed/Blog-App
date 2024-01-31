@@ -10,7 +10,7 @@ const app = express();
 
 
 const corsOptions = {
-  origin: "https://my-blog-app-rust.vercel.app/", // replace with your frontend domain
+  origin: "https://my-blog-app-rust.vercel.app",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
@@ -24,10 +24,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/user", router);
-// app.use("/api/blog", blogRouter);
-app.use("/", blogRouter);
+app.use("/api/blog", blogRouter);
 
 app.get('/', (req, res) => res.send('Hello World!'))
+
+
 
 const PORT = process.env.PORT || 8000;
 
