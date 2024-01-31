@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/user", router);
 app.use("/api/blog", blogRouter);
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('https://blog-app-lake-beta.vercel.app/', (req, res) => res.send('Hello World!'))
 
 
 
