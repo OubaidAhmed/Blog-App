@@ -26,7 +26,7 @@ const Auth = () => {
   const sendRequest = async (type = "signin") => {
     try {
       const res = await axios.post(`https://blog-app-lake-beta.vercel.app/api/user/${type}`, {
-        
+
         name: inputs.name,
         email: inputs.email,
         password: inputs.password,
@@ -40,15 +40,13 @@ const Auth = () => {
 
 
   const handleSubmit = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     if (isSignup) {
+      event.preventDefault();
       sendRequest("signup")
         .then((data) => localStorage.setItem("userId", data.user._id))
         .then(() => {
           dispatch(authActions.signin());
-        })
-        .then(() => {
-          navigate("/");
         })
         .then((data) => console.log(data));
     } else {

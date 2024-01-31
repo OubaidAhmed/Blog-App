@@ -10,7 +10,7 @@ const app = express();
 
 
 const corsOptions = {
-  origin: "https://my-blog-app-rust.vercel.app",
+  origin: ["https://my-blog-app-rust.vercel.app", "https://blog-app-lake-beta.vercel.app"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
