@@ -15,7 +15,7 @@ function Blogs() {
 
   const sendRequest = async () => {
     try {
-      const res = await axios.get("https://blog-app-lake-beta.vercel.app/api/blog");
+      const res = await axios.get("https://blog-app-lake-beta.vercel.app");
       const data = res.data;
       return data;
     } catch (error) {
