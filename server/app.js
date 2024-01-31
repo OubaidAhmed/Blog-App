@@ -18,6 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/user", router);
 app.use("/api/blog", blogRouter);
 
+app.get('/', (req, res) => res.send('Hello World!'))
+
 const PORT = process.env.PORT || 8000;
 
 mongoose
