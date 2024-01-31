@@ -15,7 +15,7 @@ function Blogs() {
 
   const sendRequest = async () => {
     try {
-      const res = await axios.get("https://blog-app-lake-beta.vercel.app/api/blog");
+      const res = await axios.get("http://localhost:8000/api/blog");
       const data = res.data;
       return data;
     } catch (error) {
@@ -30,25 +30,22 @@ function Blogs() {
 
   return (
 
-    (blogs ?
-      <div>
-        {blogs &&
-          blogs.map((blog, index) => (
-            <Blog
-              key={blog._id}
-              id={blog._id}
-              isUser={localStorage.getItem("userId") === blog.user._id}
-              title={blog.title}
-              content={blog.content}
-              image={blog.image}
-              userName={blog.user.name}
-            />
-          ))}
-      </div>
-      : <div>
-        <h1>No Blogs yet</h1>
-      </div>
-    )
+    <div> 
+      {blogs &&
+        blogs.map((blog, index) => (
+          <Blog
+            key={blog._id}
+            id={blog._id}
+            isUser={localStorage.getItem("userId") === blog.user._id}
+            title={blog.title}
+            content={blog.content}
+            image={blog.image}
+            userName={blog.user.name}
+          />
+        ))}
+    </div>
+
+
 
   );
 }

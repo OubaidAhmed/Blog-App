@@ -25,8 +25,7 @@ const Auth = () => {
 
   const sendRequest = async (type = "signin") => {
     try {
-      const res = await axios.post(`https://blog-app-lake-beta.vercel.app/api/user/${type}`, {
-
+      const res = await axios.post(`http://localhost:8000/api/user/${type}`, {
         name: inputs.name,
         email: inputs.email,
         password: inputs.password,
