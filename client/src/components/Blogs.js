@@ -30,7 +30,7 @@ function Blogs() {
 
   return (
 
-    <div> 
+    <div>
       {blogs &&
         blogs.map((blog, index) => (
           <Blog
