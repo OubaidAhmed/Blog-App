@@ -15,7 +15,7 @@ function Blogs() {
 
   const sendRequest = async () => {
     try {
-      const res = await axios.get("https://blog-app-lake-beta.vercel.app");
+      const res = await axios.get("https://blog-app-lake-beta.vercel.app/api/blog");
       const data = res.data;
       return data;
     } catch (error) {
@@ -27,7 +27,7 @@ function Blogs() {
   useEffect(() => {
     sendRequest().then((data) => setBlogs(data.blogs));
   }, []);
- 
+
   return (
     <div>
       {blogs &&
