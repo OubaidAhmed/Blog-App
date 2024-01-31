@@ -25,7 +25,7 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
 
   const deleteRequest = async () => {
     try {
-      await axios.delete(`https://blog-app-lake-beta.vercel.app/${id}`)
+      await axios.delete(`https://blog-app-lake-beta.vercel.app/api/blog/${id}`)
       // No need to return any data since we're only interested in the deletion
     } catch (error) {
       console.error("Error deleting blog:", error);

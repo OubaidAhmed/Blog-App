@@ -9,7 +9,15 @@ dotenv.config();
 const app = express();
 
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://my-blog-app-rust.vercel.app", // replace with your frontend domain
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+
 
 
 app.use(express.json());
