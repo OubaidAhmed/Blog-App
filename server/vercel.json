@@ -2,7 +2,7 @@
     "functions": {
         "api/app.js": {
             "memory": 1024,
-            "maxDuration": 4
+            "maxDuration": 10
         }
     }
 }
