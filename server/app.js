@@ -21,6 +21,12 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "OK", message: "Backend is healthy" });
+});
+
+
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);

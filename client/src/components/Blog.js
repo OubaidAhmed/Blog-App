@@ -20,12 +20,12 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    navigate(`/myBlogs/${id}`);
+    navigate(`http://localhost:8000/api/blog/myBlogs/${id}`);
   };
 
   const deleteRequest = async () => {
     try {
-      await axios.delete(`http://localhost:8000/api/blog/${id}`)
+      await axios.delete(`/${id}`)
       // No need to return any data since we're only interested in the deletion
     } catch (error) {
       console.error("Error deleting blog:", error);

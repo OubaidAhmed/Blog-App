@@ -21,7 +21,6 @@ const AddBlog = () => {
 
   const sendRequest = async (type = "signin") => {
     const res = await axios
-      // .post("http://localhost:8000/api/blog/add", {
       .post("http://localhost:8000/api/blog/add", {
         title: inputs.title,
         content: inputs.content,
