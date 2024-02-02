@@ -1,9 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import blogRouter from "./routes/blog-routes.js";
-import router from "./routes/user-routes.js";
+import path from "path";
+import serverless from "serverless-http";
+import bodyParser from "body-parser";
+import blogRouter from "../routes/blog-routes.js";
+import userRouter from "../routes/user-routes.js"; // Assuming you have a userRouter
 import cors from "cors";
+import { fileURLToPath } from 'url';
+
 
 dotenv.config();
 const app = express();
@@ -11,31 +16,34 @@ const app = express();
 // Use CORS globally
 app.use(cors());
 
+const __filename = fileURLToPath(import.meta.url);  // Convert import.meta.url to a file path
+const __dirname = path.dirname(__filename);
+
+const mainRouter = express.Router();
+mainRouter.get('/', (req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('<h1>Hello from Express.js!</h1>');
+    res.end();
+});
+mainRouter.get('/another', (req, res) => res.json({ route: req.originalUrl }));
+mainRouter.post('/', (req, res) => res.json({ postBody: req.body }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(".netlify/functions/api/user", router);
+app.use(bodyParser.json());
+app.use('/.netlify/functions/app', mainRouter);
+// app.use('/', (req, res) => res.sendFile(new URL('../index.html', import.meta.url).pathname));
+app.use('/', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
 
 
-app.use("/api/user", router);
-app.use("/api/blog", blogRouter);
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
-// Health check endpoint
-app.get("/health", (req, res) => {
-    res.status(200).json({ status: "OK", message: "Backend is healthy" });
-});
-
-
-// Global error handler
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something went wrong!');
 });
+
+export const handler = serverless(app); // Use the default export
 
 const PORT = process.env.PORT || 8000;
 
@@ -47,7 +55,18 @@ mongoose
             console.log(`Listening at PORT ${PORT}`);
         });
     })
-    .catch((err) => console.log("MongoBD not connected"));
+    .catch((err) => console.log("MongoDB not connected"));
+
+app.listen(3000, () => console.log('Local app listening on port 3000!'));
+
+
+
+// app.use("/api/user", router);
+// app.use("/api/blog", blogRouter);
+
+
+
+
 
 
 // import mongoose from "mongoose";
