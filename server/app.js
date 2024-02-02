@@ -11,6 +11,7 @@ const app = express();
 // Use CORS globally
 app.use(cors());
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
