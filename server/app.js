@@ -44,9 +44,3 @@ mongoose
     });
   })
   .catch((err) => console.log("MongoBD not connected"));
-
-// mongoose
-//   .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-//   .then(() => app.listen(PORT))
-//   .then(() => console.log(`Connected To Database and listening at PORT ${PORT}`))
-//   .catch((err) => console.log("MongoBD not connected"));
