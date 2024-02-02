@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 app.use('/.netlify/functions/app', mainRouter);
-// app.use('/', (req, res) => res.sendFile(new URL('../index.html', import.meta.url).pathname));
+app.use('/health', (req, res) => res.status(200).json({ health: "good" })); // Health check endpoint
 app.use('/', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
 app.use('/hello', (req, res) => console.log('hello'));
 
