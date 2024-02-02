@@ -1,0 +1,7 @@
+[build]
+  functions = "src/functions"
+  command = “CI= npm run build”
+
+
+[dev]
+  publish = "dist"

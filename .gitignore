@@ -8,6 +8,8 @@ node_modules
 # testing
 /coverage
 
+functions
+
 # misc
 .vscode
 .DS_Store
