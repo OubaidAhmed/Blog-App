@@ -52,30 +52,42 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export default async function handler(request, response) {
-  // Replace this with your MongoDB connection logic
+// Move MongoDB connection outside the handler function
+const connectToDatabase = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,
     });
     console.log("Connected To Database");
   } catch (error) {
     console.error("MongoDB not connected:", error);
-    return response.status(500).json({ error: "MongoDB not connected" });
+    throw error;
   }
+};
 
-  // Your existing Express.js route logic can be adapted here
-  if (request.url === "/health") {
-    return response.status(200).json({ status: "OK", message: "Serverless function is healthy" });
+// Connect to MongoDB during server startup
+connectToDatabase();
+
+export default async function handler(request, response) {
+  try {
+    // Your existing code here
+
+    if (request.url === "/health") {
+      return response.status(200).json({ status: "OK", message: "Serverless function is healthy" });
+    }
+
+    if (!request.url) return response.status(400);
+
+    const url = new URL(request.url, `http://${request.headers.host}`);
+    const { searchParams } = url;
+    const hasTitle = searchParams.has("title");
+    const title = hasTitle ? searchParams.get("title")?.slice(0, 100) : "My default title";
+
+    return response.status(200).json({ title });
+  } catch (error) {
+    console.error("Error in the serverless function:", error);
+    return response.status(500).json({ error: "Something went wrong!" });
   }
-
-  if (!request.url) return response.status(400);
-
-  const url = new URL(request.url, `http://${request.headers.host}`);
-  const { searchParams } = url;
-  const hasTitle = searchParams.has("title");
-  const title = hasTitle ? searchParams.get("title")?.slice(0, 100) : "My default title";
-
-  return response.status(200).json({ title });
 }
