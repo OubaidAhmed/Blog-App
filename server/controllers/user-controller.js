@@ -16,6 +16,7 @@ export const getAllUser = async (req, res, next) => {
 };
 
 export const signUp = async (req, res, next) => {
+  console.log('printed')
   const { name, email, password } = req.body;
 
   let existingUser;
