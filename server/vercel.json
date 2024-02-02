@@ -2,7 +2,7 @@
     "functions": {
         "app.js": {
             "memory": 1024,
-            "maxDuration": 25
+            "maxDuration": 4
         }
     }
 }
