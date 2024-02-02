@@ -123,7 +123,7 @@ export default async function handler(request, response) {
     const { pathname } = new URL(request.url, `http://${request.headers.host}`);
 
     // Health check endpoint
-    if (pathname === "/health") {
+    if (pathname === "/api/app/health") {
       return response.status(200).json({ status: "OK", message: "Serverless function is healthy" });
     }
 
