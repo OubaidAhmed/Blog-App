@@ -12,7 +12,7 @@
     ],
     "builds": [
         {
-            "src": "./app.js",
+            "src": "/(.*)",
             "use": "@vercel/node"
         }
     ]
