@@ -5,9 +5,8 @@
   "main": "functions/app.js",
   "type": "module",
   "scripts": {
-    "build": "netlify-lambda build express",
-    "start": "node express/app.js",
-    "dev": "nodemon express/app.js",
+    "start": "nodemon app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
