@@ -37,11 +37,7 @@ const AddBlog = () => {
     sendRequest()
       .then((data) => console.log(data))
   };
-
-
-
-
-
+  
   return (
     <div>
       <form onSubmit={handleSubmit}>

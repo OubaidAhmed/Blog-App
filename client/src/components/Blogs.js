@@ -3,15 +3,6 @@ import axios from "axios";
 import Blog from "./Blog";
 
 function Blogs() {
-  const [blogs, setBlogs] = useState();
-  // const sendRequest = async () => {
-  //   const res = await axios
-  //     .get("https://blog-app-lake-beta.vercel.app/api/blog")
-  //     .catch((err) => console.log(err));
-
-  //   const data = await res.data;
-  //   return data;
-  // };
 
   const sendRequest = async () => {
     try {

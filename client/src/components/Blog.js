@@ -26,7 +26,6 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   const deleteRequest = async () => {
     try {
       await axios.delete(`/${id}`)
-      // No need to return any data since we're only interested in the deletion
     } catch (error) {
       console.error("Error deleting blog:", error);
       throw error;
@@ -36,11 +35,9 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   const handleDelete = async () => {
     try {
       await deleteRequest();
-      // Perform any other actions after successful deletion if needed
-      navigate("/", { replace: true }); // Navigate to the home page
+      navigate("/", { replace: true }); 
     } catch (error) {
       console.error("Error deleting blog:", error);
-      // Handle the error, show a message to the user, etc.
     }
   };
 
