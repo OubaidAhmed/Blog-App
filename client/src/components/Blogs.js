@@ -5,7 +5,6 @@ import Blog from "./Blog";
 function Blogs() {
   const [blogs, setBlogs] = useState([]);
 
-  const [blogs, setBlogs] = useState([]);
 
   const sendRequest = async () => {
     try {
