@@ -4,6 +4,8 @@ import Blog from "./Blog";
 
 function Blogs() {
 
+  const [blogs, setBlogs] = useState([]);
+
   const sendRequest = async () => {
     try {
       const res = await axios.get("http://localhost:8000/api/blog");
