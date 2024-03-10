@@ -24,9 +24,9 @@ app.get("/", (req, res) => {
 });
 
 // Add a wildcard (*) route handler for unmatched routes
-app.use((req, res, next) => {
-    res.status(404).send("Not Found");
-});
+// app.use((req, res, next) => {
+//     res.status(404).send("Not Found");
+// });
 
 app.use("/api/user", router);
 app.use("/api/blog", blogRouter);
