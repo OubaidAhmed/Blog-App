@@ -25,15 +25,15 @@ const Auth = () => {
 
   const sendRequest = async (type = "signin") => {
     try {
-      const res = await axios.post(`http://localhost:8000/api/user/${type}`, {
+      const res = await axios.post(`${window.location.origin}/api/user/${type}`, {
         name: inputs.name,
         email: inputs.email,
         password: inputs.password,
       });
-      return res.data; // Return data directly
+      return res.data; 
     } catch (err) {
       console.error('Error making request:', err);
-      throw err; // Re-throw the error to handle it in the handleSubmit function
+      throw err; 
     }
   };
 

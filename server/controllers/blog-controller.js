@@ -112,5 +112,5 @@ export const getUserById = async (req, res, next) => {
   if (!userBlogs) {
     return res.status(400).json({ message: "No blogs found!" });
   }
-  return res.status(200).json({ user : userBlogs });
+  return res.status(200).json({ user: userBlogs });
 };

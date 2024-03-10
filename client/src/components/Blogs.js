@@ -8,7 +8,7 @@ function Blogs() {
 
   const sendRequest = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/blog");
+      const res = await axios.get(`${window.location.origin}/api/blog`);
       const data = res.data;
       return data;
     } catch (error) {

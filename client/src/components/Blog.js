@@ -20,7 +20,7 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    navigate(`http://localhost:8000/api/blog/myBlogs/${id}`);
+    navigate(`${window.location.origin}/api/blog/myBlogs/${id}`);
   };
 
   const deleteRequest = async () => {
@@ -35,7 +35,7 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   const handleDelete = async () => {
     try {
       await deleteRequest();
-      navigate("/", { replace: true }); 
+      navigate("/", { replace: true });
     } catch (error) {
       console.error("Error deleting blog:", error);
     }

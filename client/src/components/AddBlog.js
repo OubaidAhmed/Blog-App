@@ -21,7 +21,7 @@ const AddBlog = () => {
 
   const sendRequest = async (type = "signin") => {
     const res = await axios
-      .post("http://localhost:8000/api/blog/add", {
+      .post(`${window.location.origin}/api/blog/add`, {
         title: inputs.title,
         content: inputs.content,
         image: inputs.image,
@@ -37,7 +37,7 @@ const AddBlog = () => {
     sendRequest()
       .then((data) => console.log(data))
   };
-  
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
