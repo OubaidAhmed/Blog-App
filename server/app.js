@@ -25,7 +25,7 @@ mongoose
         console.log(`Connected To Database`);
 
         app.get("/", (req, res) => {
-            app.use(express.static(path.resolve(__dirname, "frontend", "build")));
+            app.use(express.static(path.resolve(__dirname, "client", "build")));
             res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
         });
 
