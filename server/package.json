@@ -7,8 +7,7 @@
   "scripts": {
     "start": "nodemon app.js",
     "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "vercel-build": "webpack"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Oubaid Ahmed",
   "license": "ISC",
@@ -23,8 +22,5 @@
     "path": "^0.12.7",
     "vercel": "^33.5.5",
     "webpack": "^5.90.1"
-  },
-  "devDependencies": {
-    "webpack-cli": "^5.1.4"
   }
 }
