@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import blogRouter from "./routes/blog-routes.js";
 import router from "./routes/user-routes.js";
 import cors from "cors";
+import path from "path";
 
 dotenv.config();
 const app = express();
@@ -22,6 +23,11 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 8000;
+
+app.get("/", (req, res) => {
+    app.use(express.static(path.resolve(__dirname, "frontend", "build")));
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+});
 
 mongoose.set('strictQuery', false);
 
