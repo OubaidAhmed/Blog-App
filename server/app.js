@@ -18,6 +18,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+    app.use(express.static(path.resolve(__dirname, "client", "build")));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
+
+// Add a wildcard (*) route handler for unmatched routes
+app.use((req, res, next) => {
+    res.status(404).send("Not Found");
+});
+
 app.use("/api/user", router);
 app.use("/api/blog", blogRouter);
 
@@ -28,10 +38,7 @@ app.use((err, req, res, next) => {
 
 const PORT = 3000 || process.env.PORT;
 
-app.get("/", (req, res) => {
-    app.use(express.static(path.resolve(__dirname, "client", "build")));
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
+
 
 mongoose.set('strictQuery', false);
 
