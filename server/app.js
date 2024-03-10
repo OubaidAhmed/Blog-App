@@ -98,4 +98,4 @@ mongoose
     })
     .catch((err) => console.log("MongoDB not connected"));
 
-module.exports = app;
+export default app;
