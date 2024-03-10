@@ -5,6 +5,10 @@ import blogRouter from "./routes/blog-routes.js";
 import router from "./routes/user-routes.js";
 import cors from "cors";
 import path from "path";
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
@@ -22,11 +26,11 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something went wrong!');
 });
 
-const PORT = process.env.PORT || 8000;
+const PORT = 3000 || process.env.PORT;
 
 app.get("/", (req, res) => {
-    app.use(express.static(path.resolve(__dirname, "frontend", "build")));
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+    app.use(express.static(path.resolve(__dirname, "client", "build")));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
 mongoose.set('strictQuery', false);
