@@ -49,12 +49,13 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
 
   const handleDelete = async () => {
     try {
-      await deleteRequest();
-      navigate("/", { replace: true });
-    } catch (error) {
-      console.error("Error deleting blog:", error);
+      await axios.delete(`${window.location.origin}/api/blog/delete/${id}`);
+      navigate("/myBlogs"); // Redirect after successful deletion
+    } catch (err) {
+      console.error("Error deleting the blog:", err);
     }
   };
+
 
   return (
     <div>

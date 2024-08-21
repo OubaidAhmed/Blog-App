@@ -144,14 +144,22 @@ function BlogDetail() {
 
   useEffect(() => {
     if (id) {
-      fetchDetails();
+      fetchDetails().catch((error) => {
+        console.error("Error fetching blog details:", error);
+        navigate("/"); // Redirect to home if there's an error
+      });
     }
   }, [id]);
+
 
   const fetchDetails = async () => {
     try {
       const res = await axios.get(`${window.location.origin}/api/blog/${id}`);
       const data = res.data;
+
+      if (!data || !data.blog) {
+        throw new Error("Blog not found");
+      }
 
       setBlog(data);
       setInputs({
@@ -161,6 +169,7 @@ function BlogDetail() {
       });
     } catch (err) {
       console.error(err);
+      navigate("/"); // Redirect to home if the blog doesn't exist
     }
   };
 
