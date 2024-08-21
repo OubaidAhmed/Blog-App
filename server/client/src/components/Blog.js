@@ -19,13 +19,27 @@ import axios from "axios";
 const Blog = ({ title, content, image, userName, isUser, id }) => {
   const navigate = useNavigate();
 
+  // const handleEdit = () => {
+  //   navigate(`${window.location.origin}/api/blog/myBlogs/${id}`);
+  // };
+
+  // const deleteRequest = async () => {
+  //   try {
+  //     await axios.delete(`/${id}`)
+  //   } catch (error) {
+  //     console.error("Error deleting blog:", error);
+  //     throw error;
+  //   }
+  // };
+
   const handleEdit = () => {
-    navigate(`${window.location.origin}/api/blog/myBlogs/${id}`);
+    // Navigate to the edit page, e.g., /edit/:id
+    navigate(`/edit/${id}`);
   };
 
   const deleteRequest = async () => {
     try {
-      await axios.delete(`/${id}`)
+      await axios.delete(`/api/blog/${id}`); // Ensure the endpoint is correct
     } catch (error) {
       console.error("Error deleting blog:", error);
       throw error;
