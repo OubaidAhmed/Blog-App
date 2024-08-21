@@ -33,7 +33,8 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   // };
 
   const handleEdit = () => {
-    navigate(`/myBlogs/${id}`);  // Navigate to the edit page for the blog with the given id
+    navigate(`/blogs/edit/${blogId}`);
+    // Navigate to the edit page for the blog with the given id
   };
 
 
@@ -47,14 +48,16 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   };
 
 
-  const handleDelete = async () => {
+  const handleDelete = async (id) => {
     try {
-      await axios.delete(`${window.location.origin}/api/blog/delete/${id}`);
+      const response = await axios.delete(`${window.location.origin}/api/blog/delete/${id}`);
+      console.log("Blog deleted successfully:", response.data);
       navigate("/myBlogs"); // Redirect after successful deletion
     } catch (err) {
-      console.error("Error deleting the blog:", err);
+      console.error("Error deleting blog:", err);
     }
   };
+
 
 
   return (
