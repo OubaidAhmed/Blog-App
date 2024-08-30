@@ -24,14 +24,22 @@ function UserBlogs() {
 
   // Function to handle blog deletion
   const handleDelete = async (blogId) => {
-  console.log("Deleting blog ID:", blogId); // Check the ID being sent
+  console.log("Deleting blog ID:", blogId); // Log the blog ID
+  const url = `${window.location.origin}/api/blog/${blogId}`; // Construct the delete URL
+  console.log("Delete URL:", url); // Log the delete URL
+
   try {
-    await axios.delete(`${window.location.origin}/api/blog/${blogId}`);
-    // ... rest of your code
+    await axios.delete(url); // Make the DELETE request
+    // Remove the deleted blog from the user's state
+    setUser((prevUser) => ({
+      ...prevUser,
+      blogs: prevUser.blogs.filter((blog) => blog._id !== blogId),
+    }));
   } catch (error) {
-    console.error("Error deleting blog:", error);
+    console.error("Error deleting blog:", error); // Log any errors
   }
 };
+
 
 
   return (
