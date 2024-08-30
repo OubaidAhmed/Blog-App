@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Blog from "./Blog";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 
 function UserBlogs() {
   const [user, setUser] = useState();
@@ -9,11 +9,13 @@ function UserBlogs() {
 
   // Function to fetch user blogs
   const sendRequest = async () => {
-    const res = await axios
-      .get(`${window.location.origin}/api/blog/user/${id}`)
-      .catch((err) => console.log(err));
-    const data = await res.data;
-    return data;
+    try {
+      const res = await axios.get(`${window.location.origin}/api/blog/user/${id}`);
+      const data = await res.data;
+      return data;
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+    }
   };
 
   useEffect(() => {
@@ -47,8 +49,8 @@ function UserBlogs() {
             userName={user.name}
           />
           <div>
-            <Link to={`/myBlogs/edit/${blog._id}`}>Edit</Link> {/* Edit link */}
-            <button onClick={() => handleDelete(blog._id)}>Delete</button> {/* Delete button */}
+            <Link to={`/myBlogs/edit/${blog._id}`}>Edit</Link>
+            <button onClick={() => handleDelete(blog._id)}>Delete</button>
           </div>
         </div>
       ))}
