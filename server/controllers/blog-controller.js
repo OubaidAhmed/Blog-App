@@ -53,24 +53,26 @@ export const addBlog = async (req, res, next) => {
 
 export const updateBlog = async (req, res, next) => {
   const { title, content, image } = req.body;
-
   const blogId = req.params.id;
 
-  let blog;
   try {
-    blog = await Blog.findByIdAndUpdate(blogId, {
+    const blog = await Blog.findByIdAndUpdate(blogId, {
       title,
       content,
       image,
-    });
+    }, { new: true }); // Option to return the updated document
+
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found!" });
+    }
+
+    return res.status(200).json({ blog });
   } catch (error) {
-    return console.log(error);
-  }
-  if (!blog) {
+    console.log(error);
     return res.status(500).json({ message: "Unable to update Blog" });
   }
-  return res.status(200).json({ blog });
 };
+
 
 export const getBlogById = async (req, res, next) => {
   const id = req.params.id;
