@@ -5,6 +5,7 @@ import Blogs from "./components/Blogs";
 import UserBlogs from "./components/UserBlogs";
 import BlogDetail from "./components/BlogDetail";
 import AddBlog from "./components/AddBlog";
+import EditBlog from "./components/EditBlog";
 import React, { useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,6 +37,7 @@ function App() {
               <Route path="/blogs/add" element={<AddBlog />} />
               <Route path="/myBlogs" element={<UserBlogs />} />
               <Route path="/myBlogs/:id" element={<BlogDetail />} />
+              <Route path="/myBlogs/edit/:id" element={<EditBlog />} />
             </>
           )}
           <Route
