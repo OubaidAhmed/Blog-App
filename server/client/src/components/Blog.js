@@ -48,13 +48,26 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   };
 
 
-  const handleDelete = async (id) => {
+  // const handleDelete = async (id) => {
+  //   try {
+  //     const response = await axios.delete(`${window.location.origin}/api/blog/delete/${id}`);
+  //     console.log("Blog deleted successfully:", response.data);
+  //     navigate("/myBlogs"); // Redirect after successful deletion
+  //   } catch (err) {
+  //     console.error("Error deleting blog:", err);
+  //   }
+  // };
+
+  const handleDelete = async () => {
+    const url = `${window.location.origin}/api/blog/${id}`; // Construct the delete URL
+    console.log("Delete URL:", url); // Log the delete URL
+
     try {
-      const response = await axios.delete(`${window.location.origin}/api/blog/delete/${id}`);
-      console.log("Blog deleted successfully:", response.data);
-      navigate("/myBlogs"); // Redirect after successful deletion
-    } catch (err) {
-      console.error("Error deleting blog:", err);
+      await axios.delete(url); // Make the DELETE request
+      // Optionally, you might want to call a function to refresh the blog list or update the state
+      console.log("Blog deleted successfully");
+    } catch (error) {
+      console.error("Error deleting blog:", error); // Log any errors
     }
   };
 
