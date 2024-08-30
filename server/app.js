@@ -29,6 +29,8 @@ mongoose
 // Define routes
 app.use("/api/user", router);
 app.use("/api/blog", blogRouter);
+app.delete('/api/blog/:id', blogController.deleteBlog);
+
 
 // Serve static files
 app.use(express.static(path.resolve(__dirname, "client", "build")));
