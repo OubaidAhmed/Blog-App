@@ -30,8 +30,6 @@ mongoose
 app.use("/api/user", router);
 app.use("/api/blog", blogRouter);
 
-
-
 // Serve static files
 app.use(express.static(path.resolve(__dirname, "client", "build")));
 
