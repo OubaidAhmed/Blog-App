@@ -28,7 +28,7 @@ const EditBlog = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await axios
-      .put(`${window.location.origin}/api/blog/update/${id}`, {
+      .put(`${window.location.origin}/myBlogs/edit/${id}`, {
         title: inputs.title,
         content: inputs.content,
         image: inputs.image,
@@ -102,3 +102,4 @@ const EditBlog = () => {
 };
 
 export default EditBlog;
+

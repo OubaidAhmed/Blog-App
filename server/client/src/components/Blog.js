@@ -38,45 +38,20 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   // };
 
   const handleEdit = () => {
-  navigate(`/myBlogs/edit/${id}`);
-  // Navigates to the edit page for the blog with the given id
-};
-
-
-
-  const deleteRequest = async () => {
-    try {
-      await axios.delete(`${window.location.origin}/api/blog/${id}`);
-    } catch (error) {
-      console.error("Error deleting blog:", error);
-      throw error;
-    }
+    navigate(`/myBlogs/${id}`);
   };
-
-
-  // const handleDelete = async (id) => {
-  //   try {
-  //     const response = await axios.delete(`${window.location.origin}/api/blog/delete/${id}`);
-  //     console.log("Blog deleted successfully:", response.data);
-  //     navigate("/myBlogs"); // Redirect after successful deletion
-  //   } catch (err) {
-  //     console.error("Error deleting blog:", err);
-  //   }
-  // };
-
-  // const handleDelete = async () => {
-  //   const url = `${window.location.origin}/api/blog/${id}`; // Construct the delete URL
-  //   console.log("Delete URL:", url); // Log the delete URL
-
-  const handleDelete = async () => {
-  try {
-    await deleteRequest(); // Call the delete request function
-    navigate("/myBlogs"); // Redirect after successful deletion
-  } catch (error) {
-    console.error("Error deleting blog:", error);
-  }
-};
-
+  const deleteRequest = async () => {
+    const res = await axios
+      .delete(`${window.location.origin}/api/blogs/${id}`)
+      .catch((err) => console.log(err));
+    const data = await res.data;
+    return data;
+  };
+  const handleDelete = () => {
+    deleteRequest()
+      .then(() => navigate("/"))
+      .then(() => navigate("/blogs"));
+  };
   return (
     <div>
       <Card
@@ -92,8 +67,7 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
         {isUser && (
           <Box display={"flex"}>
             <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
-              edit
-              {/* <ModeEditOutlineOutlined color="info" /> */}
+              <ModeEditOutlineOutlined color="info" />
             </IconButton>
             <IconButton onClick={handleDelete}>
               <DeleteForeverOutlined color="error" />
