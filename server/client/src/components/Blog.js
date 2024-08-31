@@ -50,7 +50,7 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
 
   const deleteRequest = async () => {
     try {
-      await axios.delete(`${window.location.origin}/api/blogs/${id}`);
+      await axios.delete(`${window.location.origin}/api/blog/${id}`);
     } catch (error) {
       console.error("Error deleting blog:", error);
       throw error;
