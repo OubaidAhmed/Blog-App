@@ -19,9 +19,9 @@ import axios from "axios";
 const Blog = ({ title, content, image, userName, isUser, id }) => {
   const navigate = useNavigate();
 
-  // const handleEdit = () => {
-  //   navigate(`${window.location.origin}/api/blog/myBlogs/${id}`);
-  // };
+  const handleEdit = () => {
+    navigate(`${window.location.origin}/api/blog/myBlogs/${id}`);
+  };
 
   // const deleteRequest = async () => {
   //   try {
@@ -37,21 +37,32 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   //   // Navigate to the edit page for the blog with the given id
   // };
 
-  const handleEdit = () => {
-    navigate(`/myBlogs/${id}`);
-  };
+  // const handleEdit = () => {
+  //   navigate(`/myBlogs/${id}`);
+  // };
+  // const deleteRequest = async () => {
+  //   const res = await axios
+  //     .delete(`${window.location.origin}/api/blogs/${id}`)
+  //     .catch((err) => console.log(err));
+  //   const data = await res.data;
+  //   return data;
+  // };
+
   const deleteRequest = async () => {
-    const res = await axios
-      .delete(`${window.location.origin}/api/blogs/${id}`)
-      .catch((err) => console.log(err));
-    const data = await res.data;
-    return data;
+    try {
+      await axios.delete(`${window.location.origin}/api/blogs/${id}`);
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+      throw error;
+    }
   };
-  const handleDelete = () => {
-    deleteRequest()
-      .then(() => navigate("/"))
-      .then(() => navigate("/blogs"));
-  };
+
+
+  // const handleDelete = () => {
+  //   deleteRequest()
+  //     .then(() => navigate("/"))
+  //     .then(() => navigate("/blogs"));
+  // };
   return (
     <div>
       <Card
