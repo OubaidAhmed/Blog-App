@@ -32,10 +32,16 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   //   }
   // };
 
+  // const handleEdit = () => {
+  //   navigate(`/blogs/edit/${blogId}`);
+  //   // Navigate to the edit page for the blog with the given id
+  // };
+
   const handleEdit = () => {
-    navigate(`/blogs/edit/${blogId}`);
-    // Navigate to the edit page for the blog with the given id
-  };
+  navigate(`/blogs/edit/${id}`);
+  // Navigates to the edit page for the blog with the given id
+};
+
 
 
   const deleteRequest = async () => {
