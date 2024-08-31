@@ -89,31 +89,24 @@ export const getBlogById = async (req, res, next) => {
   return res.status(200).json({ blog });
 };
 
-// export const deleteBlog = async (req, res, next) => {
-//   let blog;
-//   try {
-//     blog = await Blog.findByIdAndRemove(req.params.id).populate("user");
-//     if (blog) {
-//       await blog.user.blogs.pull(blog);
-//       await blog.user.save();
-//       return res.status(200).json({ message: "Successfully Deleted" });
-//     } else {
-//       return res.status(404).json({ message: "Blog not found!" });
-//     }
-//   } catch (err) {
-//     console.log(err);
-//     return res.status(500).json({ message: "Unable To Delete" });
-//   }
-// };
-
-const deleteBlog = async (id) => {
-    try {
-        const response = await axios.delete(`https://your-server-url.com/blogs/${id}`);
-        console.log('Blog deleted:', response.data);
-    } catch (error) {
-        console.error('Error deleting blog:', error);
+export const deleteBlog = async (req, res, next) => {
+  let blog;
+  try {
+    blog = await Blog.findByIdAndRemove(req.params.id).populate("user");
+    if (blog) {
+      await blog.user.blogs.pull(blog);
+      await blog.user.save();
+      return res.status(200).json({ message: "Successfully Deleted" });
+    } else {
+      return res.status(404).json({ message: "Blog not found!" });
     }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Unable To Delete" });
+  }
 };
+
+
 
 
 
