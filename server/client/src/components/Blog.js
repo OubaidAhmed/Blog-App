@@ -77,18 +77,6 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   }
 };
 
-
-    try {
-      await axios.delete(url); // Make the DELETE request
-      // Optionally, you might want to call a function to refresh the blog list or update the state
-      console.log("Blog deleted successfully");
-    } catch (error) {
-      console.error("Error deleting blog:", error); // Log any errors
-    }
-  };
-
-
-
   return (
     <div>
       <Card
