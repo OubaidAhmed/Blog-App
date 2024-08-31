@@ -38,7 +38,7 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
   // };
 
   const handleEdit = () => {
-  navigate(`/blogs/edit/${id}`);
+  navigate(`/myBlogs/edit/${id}`);
   // Navigates to the edit page for the blog with the given id
 };
 
@@ -92,7 +92,8 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
         {isUser && (
           <Box display={"flex"}>
             <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
-              <ModeEditOutlineOutlined color="info" />
+              edit
+              {/* <ModeEditOutlineOutlined color="info" /> */}
             </IconButton>
             <IconButton onClick={handleDelete}>
               <DeleteForeverOutlined color="error" />
