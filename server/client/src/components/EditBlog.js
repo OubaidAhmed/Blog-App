@@ -1,60 +1,101 @@
-// src/components/EditBlog.js
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { Box, InputLabel, TextField, Typography, Button } from "@mui/material";
+
+const labelStyle = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
 
 const EditBlog = () => {
+  const [inputs, setInputs] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
-  const [blog, setBlog] = useState({
-    title: "",
-    content: "",
-    image: "",
-  });
 
   useEffect(() => {
     const fetchBlog = async () => {
-      const response = await axios.get(`/api/blog/${id}`);
-      setBlog(response.data.blog);
+      const res = await axios.get(`${window.location.origin}/api/blog/${id}`);
+      setInputs(res.data.blog);
     };
     fetchBlog();
   }, [id]);
 
-  const handleChange = (e) => {
-    setBlog({ ...blog, [e.target.name]: e.target.value });
+  const handleChange = (event) => {
+    setInputs((prevValue) => ({
+      ...prevValue,
+      [event.target.name]: event.target.value,
+    }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await axios.put(`/api/blog/update/${id}`, blog);
-    navigate("/myBlogs");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await axios
+      .put(`${window.location.origin}/api/blog/update/${id}`, {
+        title: inputs.title,
+        content: inputs.content,
+        image: inputs.image,
+      })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+
+    navigate("/myBlogs"); // Redirect back to myBlogs after submission
   };
 
   return (
     <div>
-      <h2>Edit Blog</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          value={blog.title}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          name="content"
-          value={blog.content}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="image"
-          value={blog.image}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Update Blog</button>
+        <Box
+          border={2}
+          borderColor="secondary.main"
+          borderRadius={10}
+          boxShadow="10px 10px 20px #ccc"
+          padding={3}
+          margin={"auto"}
+          marginTop={5}
+          display="flex"
+          flexDirection={"column"}
+          width={"70%"}
+        >
+          <Typography
+            fontWeight={"bold"}
+            padding={3}
+            color="gray"
+            variant="h3"
+            textAlign={"center"}
+          >
+            Edit your Blog
+          </Typography>
+          <InputLabel sx={labelStyle}>Title</InputLabel>
+          <TextField
+            name="title"
+            onChange={handleChange}
+            value={inputs.title || ""}
+            margin="normal"
+            variant="outlined"
+          />
+          <InputLabel sx={labelStyle}>Content</InputLabel>
+          <TextField
+            name="content"
+            onChange={handleChange}
+            value={inputs.content || ""}
+            margin="normal"
+            variant="outlined"
+          />
+          <InputLabel sx={labelStyle}>ImageURL</InputLabel>
+          <TextField
+            name="image"
+            onChange={handleChange}
+            value={inputs.image || ""}
+            margin="normal"
+            variant="outlined"
+          />
+          <Button
+            sx={{ mt: 2, borderRadius: 4 }}
+            variant="contained"
+            color="warning"
+            type="submit"
+          >
+            Update Blog
+          </Button>
+        </Box>
       </form>
     </div>
   );
